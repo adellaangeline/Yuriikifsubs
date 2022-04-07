@@ -196,7 +196,7 @@ Unsuccessful: <code>{unsuccessful}</code></b>"""
         await asyncio.sleep(8)
         await msg.delete()
 
-@Bot.on_message(filters.command("ping"))
+@Bot.on_message(filters.command("ping") & filters.user(ADMINS))
 async def ping_pong(client, m: Message):
     start = time()
     current_time = datetime.utcnow()
@@ -211,7 +211,7 @@ async def ping_pong(client, m: Message):
     )
 
 
-@Bot.on_message(filters.command("uptime"))
+@Bot.on_message(filters.command("uptime") & filters.user(ADMINS))
 async def get_uptime(client, m: Message):
     current_time = datetime.utcnow()
     uptime_sec = (current_time - START_TIME).total_seconds()
